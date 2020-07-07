@@ -219,9 +219,9 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             
             if showOnlyPreferredSection && hasPreferredSection,
                 let array = countries[dataSource.preferredCountriesSectionTitle!] {
-                indexArray = array
+//                indexArray = array
             } else if let array = countries[String(text.capitalized[text.startIndex])] {
-                indexArray = array
+//                indexArray = array
             }
 
             searchResults.append(contentsOf: indexArray.filter({
