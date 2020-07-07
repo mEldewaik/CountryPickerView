@@ -219,16 +219,16 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             
             if showOnlyPreferredSection && hasPreferredSection,
                 let array = countries[dataSource.preferredCountriesSectionTitle!] {
-                indexArray = array
+//                indexArray = array
             } else if let array = countries[String(text.capitalized[text.startIndex])] {
-                indexArray = array
+//                indexArray = array
             }
 
             searchResults.append(contentsOf: indexArray.filter({
                 let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
                 let code = $0.code.lowercased()
                 let query = text.lowercased()
-                return name.contains(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
+                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
             }))
         }
         tableView.reloadData()
