@@ -126,32 +126,32 @@ extension CountryPickerViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CountryTableViewCell
             ?? CountryTableViewCell(style: .default, reuseIdentifier: identifier)
         
-//        let country = isSearchMode ? searchResults[indexPath.row]
-//            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
-//
-//        var name = country.localizedName(dataSource.localeForCountryNameInList) ?? country.name
-//        if dataSource.showCountryCodeInList {
-//            name = "\(name) (\(country.code))"
-//        }
-//        if dataSource.showPhoneCodeInList {
-//            name = "\(name) (\(country.phoneCode))"
-//        }
-//        cell.imageView?.image = country.flag
-//        
-//        cell.flgSize = dataSource.cellImageViewSize
-//        cell.imageView?.clipsToBounds = true
-//
-//        cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
-//        cell.imageView?.layer.masksToBounds = true
-//        
-//        cell.textLabel?.text = name
-//        cell.textLabel?.font = dataSource.cellLabelFont
-//        if let color = dataSource.cellLabelColor {
-//            cell.textLabel?.textColor = color
-//        }
-//        cell.accessoryType = country == countryPickerView.selectedCountry &&
-//            dataSource.showCheckmarkInList ? .checkmark : .none
-//        cell.separatorInset = .zero
+        let country = isSearchMode ? searchResults[indexPath.row]
+            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
+
+        var name = country.localizedName(dataSource.localeForCountryNameInList) ?? country.name
+        if dataSource.showCountryCodeInList {
+            name = "\(name) (\(country.code))"
+        }
+        if dataSource.showPhoneCodeInList {
+            name = "\(name) (\(country.phoneCode))"
+        }
+        cell.imageView?.image = country.flag
+        
+        cell.flgSize = dataSource.cellImageViewSize
+        cell.imageView?.clipsToBounds = true
+
+        cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
+        cell.imageView?.layer.masksToBounds = true
+        
+        cell.textLabel?.text = name
+        cell.textLabel?.font = dataSource.cellLabelFont
+        if let color = dataSource.cellLabelColor {
+            cell.textLabel?.textColor = color
+        }
+        cell.accessoryType = country == countryPickerView.selectedCountry &&
+            dataSource.showCheckmarkInList ? .checkmark : .none
+        cell.separatorInset = .zero
         return cell
     }
     
