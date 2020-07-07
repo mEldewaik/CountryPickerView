@@ -214,9 +214,9 @@ extension CountryPickerViewController: UISearchResultsUpdating {
 //        if let text = searchController.searchBar.text, text.count > 0 {
 //            isSearchMode = true
 //            searchResults.removeAll()
-//            
+//
 //            var indexArray = [Country]()
-//            
+//
 //            if showOnlyPreferredSection && hasPreferredSection,
 //                let array = countries[dataSource.preferredCountriesSectionTitle!] {
 //                indexArray = array
@@ -231,7 +231,7 @@ extension CountryPickerViewController: UISearchResultsUpdating {
 //                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
 //            }))
 //        }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
 }
 
