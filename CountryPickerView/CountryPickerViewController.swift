@@ -126,32 +126,32 @@ extension CountryPickerViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? CountryTableViewCell
             ?? CountryTableViewCell(style: .default, reuseIdentifier: identifier)
         
-        let country = isSearchMode ? searchResults[indexPath.row]
-            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
-
-        var name = country.localizedName(dataSource.localeForCountryNameInList) ?? country.name
-        if dataSource.showCountryCodeInList {
-            name = "\(name) (\(country.code))"
-        }
-        if dataSource.showPhoneCodeInList {
-            name = "\(name) (\(country.phoneCode))"
-        }
-        cell.imageView?.image = country.flag
-        
-        cell.flgSize = dataSource.cellImageViewSize
-        cell.imageView?.clipsToBounds = true
-
-        cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
-        cell.imageView?.layer.masksToBounds = true
-        
-        cell.textLabel?.text = name
-        cell.textLabel?.font = dataSource.cellLabelFont
-        if let color = dataSource.cellLabelColor {
-            cell.textLabel?.textColor = color
-        }
-        cell.accessoryType = country == countryPickerView.selectedCountry &&
-            dataSource.showCheckmarkInList ? .checkmark : .none
-        cell.separatorInset = .zero
+//        let country = isSearchMode ? searchResults[indexPath.row]
+//            : countries[sectionsTitles[indexPath.section]]![indexPath.row]
+//
+//        var name = country.localizedName(dataSource.localeForCountryNameInList) ?? country.name
+//        if dataSource.showCountryCodeInList {
+//            name = "\(name) (\(country.code))"
+//        }
+//        if dataSource.showPhoneCodeInList {
+//            name = "\(name) (\(country.phoneCode))"
+//        }
+//        cell.imageView?.image = country.flag
+//        
+//        cell.flgSize = dataSource.cellImageViewSize
+//        cell.imageView?.clipsToBounds = true
+//
+//        cell.imageView?.layer.cornerRadius = dataSource.cellImageViewCornerRadius
+//        cell.imageView?.layer.masksToBounds = true
+//        
+//        cell.textLabel?.text = name
+//        cell.textLabel?.font = dataSource.cellLabelFont
+//        if let color = dataSource.cellLabelColor {
+//            cell.textLabel?.textColor = color
+//        }
+//        cell.accessoryType = country == countryPickerView.selectedCountry &&
+//            dataSource.showCheckmarkInList ? .checkmark : .none
+//        cell.separatorInset = .zero
         return cell
     }
     
@@ -211,27 +211,27 @@ extension CountryPickerViewController {
 extension CountryPickerViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
-//        if let text = searchController.searchBar.text, text.count > 0 {
-//            isSearchMode = true
-//            searchResults.removeAll()
-//
-//            var indexArray = [Country]()
-//
-//            if showOnlyPreferredSection && hasPreferredSection,
-//                let array = countries[dataSource.preferredCountriesSectionTitle!] {
-//                indexArray = array
-//            } else if let array = countries[String(text.capitalized[text.startIndex])] {
-//                indexArray = array
-//            }
-//
-//            searchResults.append(contentsOf: indexArray.filter({
-//                let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
-//                let code = $0.code.lowercased()
-//                let query = text.lowercased()
-//                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
-//            }))
-//        }
-//        tableView.reloadData()
+        if let text = searchController.searchBar.text, text.count > 0 {
+            isSearchMode = true
+            searchResults.removeAll()
+            
+            var indexArray = [Country]()
+            
+            if showOnlyPreferredSection && hasPreferredSection,
+                let array = countries[dataSource.preferredCountriesSectionTitle!] {
+                indexArray = array
+            } else if let array = countries[String(text.capitalized[text.startIndex])] {
+                indexArray = array
+            }
+
+            searchResults.append(contentsOf: indexArray.filter({
+                let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
+                let code = $0.code.lowercased()
+                let query = text.lowercased()
+                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
+            }))
+        }
+        tableView.reloadData()
     }
 }
 
