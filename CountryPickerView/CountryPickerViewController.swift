@@ -211,26 +211,26 @@ extension CountryPickerViewController {
 extension CountryPickerViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         isSearchMode = false
-        if let text = searchController.searchBar.text, text.count > 0 {
-            isSearchMode = true
-            searchResults.removeAll()
-            
-            var indexArray = [Country]()
-            
-            if showOnlyPreferredSection && hasPreferredSection,
-                let array = countries[dataSource.preferredCountriesSectionTitle!] {
+//        if let text = searchController.searchBar.text, text.count > 0 {
+//            isSearchMode = true
+//            searchResults.removeAll()
+//            
+//            var indexArray = [Country]()
+//            
+//            if showOnlyPreferredSection && hasPreferredSection,
+//                let array = countries[dataSource.preferredCountriesSectionTitle!] {
 //                indexArray = array
-            } else if let array = countries[String(text.capitalized[text.startIndex])] {
+//            } else if let array = countries[String(text.capitalized[text.startIndex])] {
 //                indexArray = array
-            }
-
-            searchResults.append(contentsOf: indexArray.filter({
-                let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
-                let code = $0.code.lowercased()
-                let query = text.lowercased()
-                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
-            }))
-        }
+//            }
+//
+//            searchResults.append(contentsOf: indexArray.filter({
+//                let name = ($0.localizedName(dataSource.localeForCountryNameInList) ?? $0.name).lowercased()
+//                let code = $0.code.lowercased()
+//                let query = text.lowercased()
+//                return name.hasPrefix(query) || (dataSource.showCountryCodeInList && code.hasPrefix(query))
+//            }))
+//        }
         tableView.reloadData()
     }
 }
